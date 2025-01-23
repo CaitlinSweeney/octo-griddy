@@ -4,17 +4,22 @@ import { Component, Input } from '@angular/core';
   selector: 'app-widget',
   standalone: true,
   template: `
-    <div class="drag-item">
+    <div class="card widget">
       <h3>{{ title }}</h3>
-      <ng-content></ng-content>
+      <div class="card-body">
+        <ng-content></ng-content>
+      </div>
     </div>
   `,
   styles: [`
-    .card {
+    .widget {
       @apply p-4 bg-base-100 rounded shadow;
     }
   `]
 })
 export class AppWidgetComponent {
   @Input() title: string = '';
+  @Input() columns: string = '';
+  @Input() rows: string = '';
+  @Input() id: number = 0;
 }
