@@ -1,0 +1,12 @@
+.drop-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.drag-item {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background: #f7f7f7;
+  border-radius: 4px;
+  cursor: grab;
+}

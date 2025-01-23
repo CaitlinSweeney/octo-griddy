@@ -1,0 +1,6 @@
+<div cdkDropList (cdkDropListDropped)="onDrop($event)" class="grid grid-cols-3 gap-4">
+  <app-widget cdkDrag *ngFor="let widget of widgets" [title]="widget.title">
+    <!-- Custom widget content -->
+     {{ widget }}
+  </app-widget>
+</div>
