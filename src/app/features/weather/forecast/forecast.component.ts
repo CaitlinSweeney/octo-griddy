@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './app-forecast.component.html',
   styleUrl: './app-forecast.component.css'
 })
-export class AppForecastComponent {
+export class ForecastComponent {
   title = 'Forecast Data'
   id = 3
   columns = 1
