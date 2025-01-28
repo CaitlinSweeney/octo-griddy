@@ -1,1 +1,18 @@
-<p>app-astronomy works!</p>
+<div class="grid col-2 gap-2">
+  <div class="flex gap-4">
+    <p>Sunrise: {{ data().astronomy.astro.sunrise }}</p>
+    <ng-icon class="w-4 h-4 ml-2" name="lucideSunrise" />
+  </div>
+  <div class="flex gap-4">
+    <p>Sunset: {{ data().astronomy.astro.sunset }}</p>
+    <ng-icon class="w-4 h-4 ml-2" name="lucideSunset" />
+  </div>
+  <div class="flex gap-4">
+    <p>Moonrise: {{ data().astronomy.astro.moonrise }}</p>
+    <ng-icon class="w-4 h-4 ml-2" name="lucideMoon" />
+  </div>
+  <div class="flex gap-4">
+      <p>Moonset: {{ data().astronomy.astro.moonset }}</p>
+      <ng-icon class="w-4 h-4 ml-2" name="lucideMoonStar" />
+  </div>
+</div>

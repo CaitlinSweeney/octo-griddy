@@ -1,13 +1,10 @@
-import { Component, inject, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, inject, signal, ViewChild, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgIconComponent, provideIcons } from '@ng-icons/core';
+import { lucidePlus } from '@ng-icons/lucide';
 import { WidgetComponent } from '../components/widget/widget.component';
 import { DragDropModule, CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { AppAstronomyComponent } from '../features/weather/astronomy/astronomy.component';
-import { ForecastComponent } from '../features/weather/forecast/forecast.component';
-import { AppMarineComponent } from '../features/weather/marine/marine.component';
-import { AppHistoryComponent } from '../features/weather/history/history.component';
 import { DashboardService } from '../services/dashboard.service';
-
 
 @Component({
   selector: 'app-dashboard',
@@ -16,23 +13,15 @@ import { DashboardService } from '../services/dashboard.service';
     CommonModule,
     WidgetComponent,
     DragDropModule,
+    NgIconComponent,
   ],
-  providers: [DashboardService],
-  template: `
-    <div>
-      <div>
-        <div cdkDropList (cdkDropListDropped)="onDrop($event)" class="grid grid-cols-3 grid-rows-3 gap-4">
-          @for (w of store.widgets(); track w.id) {
-            <app-widget cdkDrag [data]="w" />
-          }
-        </div>
-      </div>
-    </div>
-  `,
+  providers: [DashboardService, provideIcons({lucidePlus})],
+  templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
   store = inject(DashboardService);
+  location = signal<string>('denver')
 
   // @ViewChild('container', { read: ViewContainerRef, static: true })
   // container!: ViewContainerRef;

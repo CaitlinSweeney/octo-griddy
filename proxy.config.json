@@ -1,0 +1,14 @@
+{
+  "/quotes": {
+    "target": "https://zenquotes.io",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/stranger-things": {
+    "target": "https://strangerthings-quotes.vercel.app",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

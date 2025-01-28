@@ -1,0 +1,14 @@
+<div class="grid gap-2">
+  @for (article of data()?.articles; track article.url ) {
+    <div class="border-b-2 border-gray-600">
+      <div class="gap-4 items-center">
+          <h4>{{ article?.title }}</h4>
+          <p>{{ article?.author }}</p>
+      </div>
+      <div class="flex gap-4">
+        <p>Source:</p>
+        <a [href]="article?.url" target="_blank" rel="noopener noreferrer">{{ article?.source?.name }}</a>
+      </div>
+    </div>
+  }
+</div>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavBarComponent } from './components/navigation/nav-bar/nav-bar.component';
 

@@ -18,15 +18,15 @@ export interface Widget {
   imports: [NgComponentOutlet],
   template: `
     <div class="card widget">
-      <h3>{{ data().title }}</h3>
-      <div class="card-body">
+      <h3 class="bg-accent p-4 prose">{{ data().title }}</h3>
+      <div class="card-body p-4">
         <ng-container [ngComponentOutlet]="data().component" />
       </div>
     </div>
   `,
   styles: [`
     .widget {
-      @apply p-4 bg-base-100 rounded shadow;
+      @apply bg-secondary rounded shadow;
     }
   `]
 })

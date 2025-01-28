@@ -1,1 +1,14 @@
-<p>app-forecast works!</p>
+<div class="grid col-2 gap-2">
+  <div class="flex gap-4 items-center">
+      <p>Currently: {{ data()?.current?.condition?.text }} {{ data()?.current?.temp_f }}&#8457;</p>
+      <img [src]="currentIcon" />
+  </div>
+  <div class="flex gap-4">
+    <p>Wind: {{ data()?.current?.wind_mph }} mph</p>
+    <ng-icon class="w-4 h-4 ml-2" name="lucideWind" />
+  </div>
+  <div class="flex gap-4">
+    <p>Percipitation: {{ data()?.current?.precip_in}}"</p>
+    <ng-icon class="w-4 h-4 ml-2" name="lucideCloudRain" />
+  </div>
+</div>
