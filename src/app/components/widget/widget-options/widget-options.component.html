@@ -1,0 +1,27 @@
+<button class="close-btn" (click)="showOptions.set(false)">
+  <ng-icon name="lucideX" />
+</button>
+<div class="grid items-start justify-center gap-8">
+  <div class="flex items-center gap-2">
+    Width
+    <div class="join">
+      @for (col of [1,2,3,4]; track col) {
+        <button class="btn btn-secondary" [class.btn-active]="data().columns === col"
+          (click)="store.updateWidget(data().id, { columns: col })">
+          {{ col }}
+        </button>
+      }
+  </div>
+  </div>
+  <div class="flex items-center gap-2">
+    Height
+    <div class="join">
+      @for (row of [1,2,3,4]; track row) {
+        <button class="btn btn-secondary" [class.btn-active]="data().rows === row"
+          (click)="store.updateWidget(data().id, { rows: row })">
+          {{ row }}
+        </button>
+        }
+    </div>
+  </div>
+</div>

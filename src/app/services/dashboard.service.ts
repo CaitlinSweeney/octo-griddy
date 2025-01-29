@@ -18,51 +18,41 @@ export class DashboardService {
       component: ForecastComponent,
       id: 1,
       title: 'Forecast Data',
-      data: {
-        index: 0,
-        columns: 2,
-        rows: 3,
-      }
+      index: 0,
+      columns: 2,
+      rows: 1,
     },
     {
       component: SportsComponent,
       title: 'Sports Highlights',
       id: 2,
-      data: {
-        index: 2,
-        columns: 2,
-        rows: 3,
-      }
+      index: 2,
+      columns: 2,
+      rows: 2,
     },
     {
       component: AstronomyComponent,
       title: 'Astronomy Data',
       id: 3,
-      data: {
-        columns: 2,
-        index: 3,
-        rows: 3,
-      }
+      columns: 2,
+      index: 1,
+      rows: 1,
     },
     {
       component: NewsComponent,
       title: 'Top News Headlines',
       id: 4,
-      data: {
-        columns: 2,
-        index: 3,
-        rows: 3,
-      }
+      index: 3,
+      columns: 3,
+      rows: 3,
     },
     {
       component: QuoteComponent,
       title: 'Todays Quote',
       id: 5,
-      data: {
-        columns: 2,
-        index: 3,
-        rows: 3,
-      }
+      index: 3,
+      columns: 1,
+      rows: 2,
     },
   ]);
   addedWidgets = signal<Widget[]>([]);
@@ -76,6 +66,15 @@ export class DashboardService {
 
   addWidget(w: Widget) {
     this.addedWidgets.set([...this.addedWidgets(), { ...w }])
+  }
+
+  updateWidget(id: number, w: Partial<Widget>) {
+    const index = this.addedWidgets().findIndex(w => w.id === id);
+    if (index !== -1) {
+      const newWidgets = [...this.addedWidgets()]
+      newWidgets[index] = {...newWidgets[index], ...w}
+      this.addedWidgets.set(newWidgets);
+    }
   }
 
   constructor() {}

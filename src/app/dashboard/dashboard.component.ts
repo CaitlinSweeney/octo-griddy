@@ -17,7 +17,7 @@ import { DashboardService } from '../services/dashboard.service';
   ],
   providers: [DashboardService, provideIcons({lucidePlus})],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
   store = inject(DashboardService);

@@ -9,7 +9,7 @@ import { NavBarComponent } from './components/navigation/nav-bar/nav-bar.compone
   standalone: true,
   imports: [DashboardComponent, NavBarComponent, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 

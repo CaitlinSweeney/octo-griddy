@@ -1,35 +1,32 @@
 import { NgComponentOutlet } from '@angular/common';
-import { Component, input, Type } from '@angular/core';
+import { Component, inject, input, signal, Type } from '@angular/core';
+import { NgIconComponent, provideIcons } from '@ng-icons/core';
+import { lucideSettings } from '@ng-icons/lucide';
+import { WidgetOptionsComponent } from './widget-options/widget-options.component';
+// import { DashboardService } from '../../services/dashboard.service';
 
 export interface Widget {
   id: number;
   title: string;
   component: Type<unknown>;
-  data: {
-    columns: number;
-    index: number;
-    rows: number;
-  }
+  columns: number;
+  index: number;
+  rows: number;
 }
 
 @Component({
   selector: 'app-widget',
   standalone: true,
-  imports: [NgComponentOutlet],
-  template: `
-    <div class="card widget">
-      <h3 class="bg-accent p-4 prose">{{ data().title }}</h3>
-      <div class="card-body p-4">
-        <ng-container [ngComponentOutlet]="data().component" />
-      </div>
-    </div>
-  `,
-  styles: [`
-    .widget {
-      @apply bg-secondary rounded shadow;
-    }
-  `]
+  imports: [NgComponentOutlet, NgIconComponent, WidgetOptionsComponent],
+  providers: [provideIcons({ lucideSettings })],
+  templateUrl: './widget.component.html',
+  styleUrl: './widget.component.scss',
+  host: {
+    '[style.grid-area]': '"span" + (data().rows ?? 1) + "/ span " + (data().columns ?? 1)',
+  }
 })
 export class WidgetComponent {
   data = input.required<Widget>();
+  showOptions = signal(false)
+  // store = inject(DashboardService);
 }

@@ -1,6 +1,13 @@
-<div class="card widget">
-  <h3>{{ data().title }}</h3>
-  <div class="card-body">
+<div class="widget">
+  <div class="flex bg-accent justify-between p-4">
+    <h3 class="prose">{{ data().title }}</h3>
+    <button (click)="showOptions.set(true)"><ng-icon name="lucideSettings" /></button>
+  </div>
+  <div class="p-8">
     <ng-container [ngComponentOutlet]="data().component" />
   </div>
+
+  @if (showOptions()) {
+    <app-widget-options [data]="data()" [(showOptions)]="showOptions" />
+  }
 </div>

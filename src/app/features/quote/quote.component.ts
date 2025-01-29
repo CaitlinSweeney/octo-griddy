@@ -6,7 +6,7 @@ import DOMPurify from 'dompurify';
   selector: 'app-quote',
   imports: [],
   templateUrl: './quote.component.html',
-  styleUrl: './quote.component.css'
+  styleUrl: './quote.component.scss'
 })
 
 export class QuoteComponent implements OnInit {

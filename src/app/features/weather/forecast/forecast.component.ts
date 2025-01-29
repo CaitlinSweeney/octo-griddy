@@ -10,7 +10,7 @@ import { WeatherService } from '../../../services/weather.service';
   imports: [NgIconComponent],
   providers: [provideIcons({lucideWind, lucideCloudRain})],
   templateUrl: './forecast.component.html',
-  styleUrl: './forecast.component.css'
+  styleUrl: './forecast.component.scss'
 })
 export class ForecastComponent implements OnInit {
   weatherService = inject(WeatherService);

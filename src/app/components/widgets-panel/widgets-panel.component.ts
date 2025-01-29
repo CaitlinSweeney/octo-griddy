@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-widgets-panel',
   imports: [],
   templateUrl: './widgets-panel.component.html',
-  styleUrl: './widgets-panel.component.css'
+  styleUrl: './widgets-panel.component.scss'
 })
 export class WidgetsPanelComponent {
 

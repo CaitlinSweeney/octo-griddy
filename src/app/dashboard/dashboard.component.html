@@ -1,25 +1,25 @@
 <div class="grid m-10 gap-10">
     <div class="flex justify-between">
       <h1 class="prose lg:prose-xl">Current Widgets</h1>
-      <div tabindex="0" class="collapse max-w-xs">
-        <input type="checkbox" />
-        <div class="btn btn-primary collapse-title">
+      <div tabindex="0" class="collapse max-w-60">
+      <input type="checkbox" />
+        <div class="btn btn-primary collapse-title p-0">
           Add Widget
-          <ng-icon class="" name="lucidePlus" />
+          <ng-icon name="lucidePlus" />
         </div>
-        <div class="collapse-content">
+        <div class="collapse-content p-0">
           <ul class="grid align-left bg-base-200 gap-2 rounded-box">
             @for (widget of store.widgetsToAdd(); track widget.id) {
               <button class="btn" (click)="store.addWidget(widget)">{{ widget.title}}</button>
             } @empty {
-              <p>No widgets to add</p>
+              <p class="px-10 py-6">No widgets to add</p>
             }
           </ul>
         </div>
       </div>
     </div>
 
-    <div cdkDropList (cdkDropListDropped)="onDrop($event)" class="grid grid-cols-3 gap-4">
+    <div cdkDropList (cdkDropListDropped)="onDrop($event)" class="dashboard-widgets">
       @for (w of store.addedWidgets(); track w.id) {
         <app-widget cdkDrag [data]="w" />
       }

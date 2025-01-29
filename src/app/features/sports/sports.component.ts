@@ -6,7 +6,7 @@ import { NewsService } from '../../services/news.service';
   selector: 'app-sports',
   imports: [],
   templateUrl: './sports.component.html',
-  styleUrl: './sports.component.css'
+  styleUrl: './sports.component.scss'
 })
 
 export class SportsComponent implements OnInit {

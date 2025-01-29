@@ -6,7 +6,7 @@ import { NewsService } from '../../services/news.service';
   selector: 'app-news',
   imports: [],
   templateUrl: './news.component.html',
-  styleUrl: './news.component.css'
+  styleUrl: './news.component.scss'
 })
 export class NewsComponent implements OnInit {
   newsService = inject(NewsService);

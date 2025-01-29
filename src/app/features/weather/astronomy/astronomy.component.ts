@@ -35,7 +35,7 @@ const defaultState = {
   imports: [CommonModule, NgIconComponent],
   providers: [provideIcons({lucideMoon, lucideSunset, lucideSunrise, lucideMoonStar })],
   templateUrl: './astronomy.component.html',
-  styleUrl: './astronomy.component.css'
+  styleUrl: './astronomy.component.scss'
 })
 export class AstronomyComponent implements OnInit {
   weatherService = inject(WeatherService);
