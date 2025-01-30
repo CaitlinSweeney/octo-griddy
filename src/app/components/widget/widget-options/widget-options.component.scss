@@ -9,7 +9,14 @@
 .close-btn {
   @apply absolute top-0 right-0 p-4;
 }
+.move-forward-btn {
+  @apply absolute top-1/2 -translate-y-1/2 -right-1 p-4;
+}
+.back-btn {
+  @apply absolute top-1/2 -translate-y-1/2 -left-1 p-4;
+}
 
 .radio-btn {
   @apply btn btn-square
 }
+

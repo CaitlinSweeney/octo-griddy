@@ -77,6 +77,29 @@ export class DashboardService {
     }
   }
 
+  updateWidgetPosition(sourceWidgetId: number, targetWidgetId: number) {
+    const sourceIndex = this.addedWidgets().findIndex(w => w.id === sourceWidgetId);
+
+    if (sourceIndex === -1) { return };
+
+    const newWidgets = [...this.addedWidgets()]
+    const sourceWidget = newWidgets.splice(sourceIndex, 1)[0];
+    const targetIndex = newWidgets.findIndex(w => w.id === targetWidgetId);
+
+    if (targetIndex === -1) { return };
+
+    const insertAt = targetIndex === sourceIndex ? targetIndex + 1 : targetIndex;
+
+    newWidgets.splice(insertAt, 0, sourceWidget)
+    this.addedWidgets.set(newWidgets);
+
+    localStorage.setItem('user_dashboard', JSON.stringify(newWidgets));
+  }
+
+  removeWidget(id: number) {
+    const index = this.addedWidgets().findIndex(w => w.id === id);
+  }
+
   constructor() {}
 }
 

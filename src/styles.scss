@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.cdk-drop-list-dragging {
+  opacity: 0.5;
+  border-left: 5px solid black;
+}
+// .cdk-drag-dragging {
+//   background-color: yellow;
+// }
