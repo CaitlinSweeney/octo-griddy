@@ -7,55 +7,58 @@ import { NewsComponent } from '../features/news/news.component';
 import { QuoteComponent } from '../features/quote/quote.component';
 import { SportsComponent } from '../features/sports/sports.component';
 
+
+export const defaultWidgets = [
+  {
+    component: ForecastComponent,
+    id: 1,
+    title: 'Forecast Data',
+    index: 0,
+    columns: 2,
+    rows: 1,
+  },
+  {
+    component: SportsComponent,
+    title: 'Sports Highlights',
+    id: 2,
+    index: 1,
+    columns: 2,
+    rows: 2,
+  },
+  {
+    component: AstronomyComponent,
+    title: 'Astronomy Data',
+    id: 3,
+    columns: 2,
+    index: 2,
+    rows: 1,
+  },
+  {
+    component: NewsComponent,
+    title: 'Top News Headlines',
+    id: 4,
+    index: 3,
+    columns: 2,
+    rows: 3,
+  },
+  {
+    component: QuoteComponent,
+    title: 'Quote of the Day',
+    id: 5,
+    index: 4,
+    columns: 1,
+    rows: 2,
+  },
+]
+
 @Injectable()
 
 export class DashboardService {
   http = inject(HttpClient);
   backgroundImage = signal<Response | null>(null)
   menuOpen = signal(false)
-  widgets = signal<Widget[]>([
-    {
-      component: ForecastComponent,
-      id: 1,
-      title: 'Forecast Data',
-      index: 0,
-      columns: 2,
-      rows: 1,
-    },
-    {
-      component: SportsComponent,
-      title: 'Sports Highlights',
-      id: 2,
-      index: 2,
-      columns: 2,
-      rows: 2,
-    },
-    {
-      component: AstronomyComponent,
-      title: 'Astronomy Data',
-      id: 3,
-      columns: 2,
-      index: 1,
-      rows: 1,
-    },
-    {
-      component: NewsComponent,
-      title: 'Top News Headlines',
-      id: 4,
-      index: 3,
-      columns: 3,
-      rows: 3,
-    },
-    {
-      component: QuoteComponent,
-      title: 'Todays Quote',
-      id: 5,
-      index: 3,
-      columns: 1,
-      rows: 2,
-    },
-  ]);
   addedWidgets = signal<Widget[]>([]);
+  widgets = signal<Widget[]>(defaultWidgets);
 
   getBackgroundImage = () => this.http.get('https://api.unsplash.com/photos/?per_page=1').subscribe(res => this.backgroundImage.set((res as Response[])[0]))
 
@@ -66,14 +69,16 @@ export class DashboardService {
 
   addWidget(w: Widget) {
     this.addedWidgets.set([...this.addedWidgets(), { ...w }])
+    localStorage.setItem('user_dashboard', JSON.stringify(this.addedWidgets()));
   }
 
   updateWidget(id: number, w: Partial<Widget>) {
     const index = this.addedWidgets().findIndex(w => w.id === id);
     if (index !== -1) {
-      const newWidgets = [...this.addedWidgets()]
-      newWidgets[index] = {...newWidgets[index], ...w}
-      this.addedWidgets.set(newWidgets);
+      const _newWidgets = [...this.addedWidgets()]
+      _newWidgets[index] = {..._newWidgets[index], ...w}
+      this.addedWidgets.set(_newWidgets);
+      localStorage.setItem('user_dashboard', JSON.stringify(_newWidgets));
     }
   }
 
@@ -82,25 +87,39 @@ export class DashboardService {
 
     if (sourceIndex === -1) { return };
 
-    const newWidgets = [...this.addedWidgets()]
-    const sourceWidget = newWidgets.splice(sourceIndex, 1)[0];
-    const targetIndex = newWidgets.findIndex(w => w.id === targetWidgetId);
+    const _newWidgets = [...this.addedWidgets()]
+    const sourceWidget = _newWidgets.splice(sourceIndex, 1)[0];
+    const targetIndex = _newWidgets.findIndex(w => w.id === targetWidgetId);
 
     if (targetIndex === -1) { return };
 
     const insertAt = targetIndex === sourceIndex ? targetIndex + 1 : targetIndex;
 
-    newWidgets.splice(insertAt, 0, sourceWidget)
-    this.addedWidgets.set(newWidgets);
+    _newWidgets.splice(insertAt, 0, sourceWidget)
+    this.addedWidgets.set(_newWidgets);
 
-    localStorage.setItem('user_dashboard', JSON.stringify(newWidgets));
+    localStorage.setItem('user_dashboard', JSON.stringify(_newWidgets));
   }
 
   removeWidget(id: number) {
     const index = this.addedWidgets().findIndex(w => w.id === id);
-  }
 
-  constructor() {}
+    if (index === -1) { return };
+
+    const _newWidgets = [...this.addedWidgets()]
+    _newWidgets.splice(index, 1)
+    this.addedWidgets.set(_newWidgets);
+
+    const storedWidgets = this.addedWidgets().map(w => ({
+      ...w,
+      componentName: w.component.name,
+    }))
+    localStorage.setItem('user_dashboard', JSON.stringify(storedWidgets));
+  }
+  removeAllWidgets() {
+    localStorage.removeItem('user_dashboard');
+    //this.setAddedWidgets([]); // Reset the widgets in the store
+  }
 }
 
 export interface Response {

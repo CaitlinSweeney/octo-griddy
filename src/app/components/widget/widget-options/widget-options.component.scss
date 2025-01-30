@@ -2,21 +2,14 @@
   @apply absolute flex flex-col justify-center top-0 bottom-0 right-0 left-0 bg-neutral-content;
 }
 
-// :host > div {
-//   @apply flex gap-8 items-center justify-center;
-// }
-
 .close-btn {
   @apply absolute top-0 right-0 p-4;
 }
-.move-forward-btn {
-  @apply absolute top-1/2 -translate-y-1/2 -right-1 p-4;
-}
-.back-btn {
-  @apply absolute top-1/2 -translate-y-1/2 -left-1 p-4;
+.remove-btn {
+  @apply absolute top-0 left-0 p-4;
 }
 
-.radio-btn {
-  @apply btn btn-square
+.layout-btn {
+  @apply btn btn-sm btn-secondary;
 }
 

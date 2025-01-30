@@ -1,14 +1,14 @@
 <div cdkDrag cdkDragPreviewContainer="parent">
   <div class="widget-header">
-    <h3 class="prose">{{ data().title }}</h3>
+    <h3 class="prose">{{ widget.title }}</h3>
     <button (click)="showOptions.set(true)"><ng-icon name="lucideSettings" /></button>
   </div>
   <div class="p-8">
-    <ng-container [ngComponentOutlet]="data().component" />
+    <ng-container [ngComponentOutlet]="widget.component" />
   </div>
 
   @if (showOptions()) {
-    <app-widget-options [data]="data()" [(showOptions)]="showOptions" />
+    <app-widget-options [data]="widget" [(showOptions)]="showOptions" />
   }
   <div *cdkDragPlaceholder></div>
 </div>

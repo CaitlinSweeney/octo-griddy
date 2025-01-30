@@ -1,13 +1,16 @@
 <button class="close-btn" (click)="showOptions.set(false)">
   <ng-icon name="lucideX" />
 </button>
+<button class="remove-btn" (click)="removeWidget(widget.id)">
+  <ng-icon name="lucideTrash" />
+</button>
 <div class="grid items-start justify-center gap-8">
   <div class="flex items-center gap-2">
     Width
     <div class="join">
       @for (col of [1,2,3,4]; track col) {
-        <button class="btn btn-secondary" [class.btn-active]="data().columns === col"
-          (click)="store.updateWidget(data().id, { columns: col })">
+        <button class="layout-btn" [class.btn-active]="widget.columns === col"
+          (click)="store.updateWidget(widget.id, { columns: col })">
           {{ col }}
         </button>
       }
@@ -17,18 +20,11 @@
     Height
     <div class="join">
       @for (row of [1,2,3,4]; track row) {
-        <button class="btn btn-secondary" [class.btn-active]="data().rows === row"
-          (click)="store.updateWidget(data().id, { rows: row })">
+        <button class="layout-btn" [class.btn-active]="widget.rows === row"
+          (click)="store.updateWidget(widget.id, { rows: row })">
           {{ row }}
         </button>
         }
     </div>
   </div>
 </div>
-
-<!-- <button class="forward-btn">
-  <ng-icon name="lucideSquareArrowRight" />
-</button>
-<button class="back-btn">
-  <ng-icon name="lucideSquareArrowLeft" />
-</button> -->
