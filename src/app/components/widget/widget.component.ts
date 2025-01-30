@@ -29,5 +29,9 @@ export interface Widget {
 export class WidgetComponent {
   data = input.required<Widget>();
   showOptions = signal(false)
-  // store = inject(DashboardService);
+
+  get widget() {
+    return this.data();
+  }
+
 }
