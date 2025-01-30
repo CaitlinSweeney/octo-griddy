@@ -1,5 +1,5 @@
-<div class="widget">
-  <div class="flex bg-accent justify-between p-4">
+<div cdkDrag cdkDragPreviewContainer="parent">
+  <div class="widget-header">
     <h3 class="prose">{{ data().title }}</h3>
     <button (click)="showOptions.set(true)"><ng-icon name="lucideSettings" /></button>
   </div>
@@ -10,4 +10,5 @@
   @if (showOptions()) {
     <app-widget-options [data]="data()" [(showOptions)]="showOptions" />
   }
+  <div *cdkDragPlaceholder></div>
 </div>

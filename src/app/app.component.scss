@@ -1,0 +1,13 @@
+.main {
+  @apply relative
+}
+.content {
+  @apply relative overflow-hidden;
+  z-index: 1;
+  height: calc(100vh - 64px);
+}
+.dash-container {
+  @apply relative overflow-auto;
+  height: 100%;
+  z-index: 1;
+}

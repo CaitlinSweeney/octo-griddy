@@ -1,15 +1,17 @@
-import { Component, inject, signal, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
 import { WidgetComponent } from '../components/widget/widget.component';
-import { DragDropModule, CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { DragDropModule, CdkDragDrop, CdkDropList, moveItemInArray, CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { DashboardService } from '../services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [
+    CdkDropList,
+    CdkDropListGroup,
     CommonModule,
     WidgetComponent,
     DragDropModule,
@@ -23,33 +25,26 @@ export class DashboardComponent {
   store = inject(DashboardService);
   location = signal<string>('denver')
 
-  // @ViewChild('container', { read: ViewContainerRef, static: true })
-  // container!: ViewContainerRef;
-
   ngOnInit(): void {
-
+    this.renderWidgets();
   }
-  ngAfterViewInit(): void {
-   // this.renderWidgets();
-  }
+  ngAfterViewInit(): void {}
 
-  onDrop(event: CdkDragDrop<string[]>): void {
+  onDrop(event: CdkDragDrop<number, any>): void {
     console.log('Item dropped:', event);
-    moveItemInArray(this.store.widgets(), event.previousIndex, event.currentIndex)
-
-    // this.widgets.forEach((widget, idx) => {
-    //   widget.index = idx;
-    // })
-
-    console.log('widgets:', this.store.widgets());
-    localStorage.setItem('user_dashboard', JSON.stringify(this.store.widgets()))
+    const { previousContainer, container } = event;
+    this.store.updateWidgetPosition(previousContainer.data, container.data)
   }
 
-
-  // renderWidgets(): void {
-  //   this.container.clear();
-  //   for (const widget of this.widgets) {
-  //     const componentRef = this.container.createComponent(widget.component);
-  //   }
-  // }
+  private renderWidgets(): void {
+    const data = localStorage.getItem('user_dashboard')
+    console.log({ renderWidgets: data })
+    if (data) {
+      const parsedData = JSON.parse(data)
+      console.log({ renderWidgets: parsedData })
+      this.store.addedWidgets.set(parsedData)
+    } else {
+      return;
+    }
+   }
 }
