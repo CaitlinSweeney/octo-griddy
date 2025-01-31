@@ -1,14 +1,11 @@
 {
-  "/quotes": {
-    "target": "https://zenquotes.io",
+ "/unsplash": {
+    "target": "https://api.unsplash.com",
     "secure": true,
     "changeOrigin": true,
-    "logLevel": "debug"
-  },
-  "/stranger-things": {
-    "target": "https://strangerthings-quotes.vercel.app",
-    "secure": true,
-    "changeOrigin": true,
-    "logLevel": "debug"
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/unsplash": ""
+    }
   }
 }

@@ -1,8 +1,10 @@
-<main class="main" data-theme="autumn">
+<main class="main" data-theme="garden">
   <app-nav-bar />
   <div class="content">
-    <div class="dash-container">
-      <app-dashboard></app-dashboard>
+    <div class="dash-container" [style.backgroundImage]="'url(' + backgroundImageHref + ')'">
+      <div class="inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+        <app-dashboard></app-dashboard>
+      </div>
     </div>
   </div>
 </main>

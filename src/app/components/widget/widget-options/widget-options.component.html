@@ -8,7 +8,7 @@
   <div class="flex items-center gap-2">
     Width
     <div class="join">
-      @for (col of [1,2,3,4]; track col) {
+      @for (col of options; track col) {
         <button class="layout-btn" [class.btn-active]="widget.columns === col"
           (click)="store.updateWidget(widget.id, { columns: col })">
           {{ col }}
@@ -19,7 +19,7 @@
   <div class="flex items-center gap-2">
     Height
     <div class="join">
-      @for (row of [1,2,3,4]; track row) {
+      @for (row of options; track row) {
         <button class="layout-btn" [class.btn-active]="widget.rows === row"
           (click)="store.updateWidget(widget.id, { rows: row })">
           {{ row }}

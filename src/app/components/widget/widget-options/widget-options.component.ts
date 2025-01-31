@@ -16,7 +16,7 @@ export class WidgetOptionsComponent {
   data = input.required<Widget>()
   store = inject(DashboardService)
   showOptions = model<boolean>(false)
-  options = [1,2,3,4];
+  options = [1,2,3,4, 5];
 
   removeWidget(id: number) {
     this.store.removeWidget(id)

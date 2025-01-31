@@ -2,8 +2,8 @@ import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
-import { Widget, WidgetComponent } from '../components/widget/widget.component';
-import { DragDropModule, CdkDragDrop, CdkDropList, moveItemInArray, CdkDropListGroup } from '@angular/cdk/drag-drop';
+import { WidgetComponent } from '../components/widget/widget.component';
+import { DragDropModule, CdkDragDrop, CdkDropList, CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { DashboardService, defaultWidgets } from '../services/dashboard.service';
 
 @Component({
@@ -19,7 +19,7 @@ import { DashboardService, defaultWidgets } from '../services/dashboard.service'
   ],
   providers: [DashboardService, provideIcons({lucidePlus})],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
   store = inject(DashboardService);
@@ -28,7 +28,6 @@ export class DashboardComponent {
   ngOnInit(): void {
     this.loadWidgetsFromLocalStorage();
   }
-  ngAfterViewInit(): void {}
 
   onDrop(event: CdkDragDrop<number, any>): void {
     const { previousContainer, container } = event;

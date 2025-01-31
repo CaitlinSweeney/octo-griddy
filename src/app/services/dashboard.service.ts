@@ -7,7 +7,6 @@ import { NewsComponent } from '../features/news/news.component';
 import { QuoteComponent } from '../features/quote/quote.component';
 import { SportsComponent } from '../features/sports/sports.component';
 
-
 export const defaultWidgets = [
   {
     component: ForecastComponent,
@@ -55,12 +54,10 @@ export const defaultWidgets = [
 
 export class DashboardService {
   http = inject(HttpClient);
-  backgroundImage = signal<Response | null>(null)
+
   menuOpen = signal(false)
   addedWidgets = signal<Widget[]>([]);
   widgets = signal<Widget[]>(defaultWidgets);
-
-  getBackgroundImage = () => this.http.get('https://api.unsplash.com/photos/?per_page=1').subscribe(res => this.backgroundImage.set((res as Response[])[0]))
 
   widgetsToAdd = computed(() => {
     const addedIds = this.addedWidgets().map(w => w.id);
@@ -116,9 +113,10 @@ export class DashboardService {
     }))
     localStorage.setItem('user_dashboard', JSON.stringify(storedWidgets));
   }
+
   removeAllWidgets() {
+    this.addedWidgets.set([]);
     localStorage.removeItem('user_dashboard');
-    //this.setAddedWidgets([]); // Reset the widgets in the store
   }
 }
 
