@@ -11,3 +11,7 @@
   height: 100%;
   z-index: 1;
 }
+.overlay {
+  @apply bg-black bg-opacity-50 flex justify-center items-center;
+  height: calc(100vh);
+}

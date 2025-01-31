@@ -19,8 +19,8 @@ export class AppComponent {
   backgroundImage = signal<UnsplashResponse | null>(null)
 
   ngOnInit(): void {
-     this.backgroundImage.set(unsplashRes);
-   // this.http.get('/unsplash/photos/random').subscribe((res) => this.backgroundImage.set((res as UnsplashResponse)))
+    // this.backgroundImage.set(unsplashRes);
+    this.http.get('/unsplash/photos/random').subscribe((res) => this.backgroundImage.set((res as UnsplashResponse)))
   }
   get backgroundImageHref() {
     console.log({ full: this.backgroundImage()?.urls?.full })

@@ -13,8 +13,8 @@ export const defaultWidgets = [
     id: 1,
     title: 'Forecast Data',
     index: 0,
-    columns: 2,
-    rows: 1,
+    columns: 1,
+    rows: 2,
   },
   {
     component: SportsComponent,
@@ -28,8 +28,8 @@ export const defaultWidgets = [
     component: AstronomyComponent,
     title: 'Astronomy Data',
     id: 3,
-    columns: 2,
     index: 2,
+    columns: 2,
     rows: 1,
   },
   {
