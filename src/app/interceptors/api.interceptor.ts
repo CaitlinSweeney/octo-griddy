@@ -1,11 +1,16 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
+const WEATHER_API_KEY = 'su1dRRdjn7mshuY1HPSoAmeKR4pop1jwE41jsnSFFIGf22kRnM';
+const WEATHER_API_HOST = 'weatherapi-com.p.rapidapi.com';
+const NEWS_API_KEY = 'su1dRRdjn7mshuY1HPSoAmeKR4pop1jwE41jsnSFFIGf22kRnM';
+const UNSPLASH_ACCESS_KEY = 'MrB-yKTNFT9njQH5igF2pWEi-qUDNoxSj5lJlEb7gxg';
+
 export const apiInterceptor: HttpInterceptorFn = (req, next) => {
   if (req.url.includes('weatherapi')) {
     const clone = req.clone({
       setHeaders: {
-          'x-rapidapi-key': 'su1dRRdjn7mshuY1HPSoAmeKR4pop1jwE41jsnSFFIGf22kRnM',
-          'x-rapidapi-host': 'weatherapi-com.p.rapidapi.com',
+          'x-rapidapi-key': WEATHER_API_KEY,
+          'x-rapidapi-host': WEATHER_API_HOST,
         },
     })
     return next(clone);
@@ -13,16 +18,15 @@ export const apiInterceptor: HttpInterceptorFn = (req, next) => {
   if (req.url.includes('newsapi')) {
     const clone = req.clone({
       setHeaders: {
-          'X-Api-Key': 'e2260d2b82e6404e811598c2b97b9b53',
+          'X-Api-Key': NEWS_API_KEY,
         },
     })
     return next(clone);
   }
   if (req.url.includes('unsplash')) {
-    // secret: CddKGjM8OpZqW65Pkbc4o_YjEI_tAoKJ5s68y
     const clone = req.clone({
       setHeaders: {
-          'Authorization': 'MrB-yKTNFT9njQH5igF2pWEi-qUDNoxSj5lJlEb7gxg',
+          'Authorization': `Client-ID ${UNSPLASH_ACCESS_KEY}`,
           'Accept-Version': '1',
         },
     })

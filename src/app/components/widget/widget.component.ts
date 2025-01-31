@@ -4,7 +4,6 @@ import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { lucideSettings } from '@ng-icons/lucide';
 import { WidgetOptionsComponent } from './widget-options/widget-options.component';
 import { CdkDrag, CdkDragPlaceholder } from '@angular/cdk/drag-drop';
-// import { DashboardService } from '../../services/dashboard.service';
 
 export interface Widget {
   id: number;
@@ -33,5 +32,4 @@ export class WidgetComponent {
   get widget() {
     return this.data();
   }
-
 }
