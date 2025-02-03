@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { QuotesService } from '../../services/quotes.service';
+import { ApiService } from '../../services/api.service';
 import DOMPurify from 'dompurify';
 
 @Component({
@@ -10,12 +10,12 @@ import DOMPurify from 'dompurify';
 })
 
 export class QuoteComponent implements OnInit {
-  quoteService = inject(QuotesService)
+  apiService = inject(ApiService)
   data = signal<Response | null>(null)
   quote = signal<string>('')
 
   ngOnInit(): void {
-      this.quoteService.getQuoteRequest().subscribe(res => {
+      this.apiService.getQuoteRequest().subscribe(res => {
         this.data.set((res as Response[])?.[0])
         this.quote.set(DOMPurify.sanitize((res as Response[])?.[1]?.content?.rendered));
       })

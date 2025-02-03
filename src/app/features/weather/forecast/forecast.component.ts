@@ -3,7 +3,7 @@ import { NgIconComponent } from '@ng-icons/core';
 import { lucideWind, lucideCloudRain } from '@ng-icons/lucide';
 import { provideIcons } from '@ng-icons/core';
 
-import { WeatherService } from '../../../services/weather.service';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'app-app-forecast',
@@ -13,12 +13,12 @@ import { WeatherService } from '../../../services/weather.service';
   styleUrl: './forecast.component.scss'
 })
 export class ForecastComponent implements OnInit {
-  weatherService = inject(WeatherService);
+  apiService = inject(ApiService);
   data = signal<ForecastResponse | null>(null)
   currentIcon = '';
 
   ngOnInit() {
-    this.weatherService.getForecastRequest().subscribe(res => {
+    this.apiService.getForecastRequest().subscribe(res => {
       // @ts-ignore
       this.data.set(res as ForecastResponse)
       // @ts-ignore

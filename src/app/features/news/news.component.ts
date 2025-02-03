@@ -1,6 +1,6 @@
 import { Component, inject,  OnInit, signal } from '@angular/core';
 
-import { NewsService } from '../../services/news.service';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-news',
@@ -9,11 +9,11 @@ import { NewsService } from '../../services/news.service';
   styleUrl: './news.component.scss'
 })
 export class NewsComponent implements OnInit {
-  newsService = inject(NewsService);
+  apiService = inject(ApiService);
   data = signal<Response | null>(null)
 
   ngOnInit(): void {
-      this.newsService.getTopHeadlinesRequest().subscribe(res => this.data.set(res as Response))
+      this.apiService.getTopHeadlinesRequest().subscribe(res => this.data.set(res as Response))
   }
 }
 

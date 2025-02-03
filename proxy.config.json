@@ -1,4 +1,13 @@
 {
+ "/dog-facts": {
+    "target": "https://dog-facts-api.herokuapp.com/api/v1/resources/dogs",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/dog-facts": ""
+    }
+  },
  "/unsplash": {
     "target": "https://api.unsplash.com",
     "secure": true,

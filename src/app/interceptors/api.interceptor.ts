@@ -1,32 +1,32 @@
 import { HttpInterceptorFn } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
-const WEATHER_API_KEY = 'su1dRRdjn7mshuY1HPSoAmeKR4pop1jwE41jsnSFFIGf22kRnM';
 const WEATHER_API_HOST = 'weatherapi-com.p.rapidapi.com';
-const NEWS_API_KEY = 'su1dRRdjn7mshuY1HPSoAmeKR4pop1jwE41jsnSFFIGf22kRnM';
-const UNSPLASH_ACCESS_KEY = 'MrB-yKTNFT9njQH5igF2pWEi-qUDNoxSj5lJlEb7gxg';
 
 export const apiInterceptor: HttpInterceptorFn = (req, next) => {
-  if (req.url.includes('weatherapi')) {
+
+  if (!environment.production && req.url.includes('weatherapi')) {
     const clone = req.clone({
       setHeaders: {
-          'x-rapidapi-key': WEATHER_API_KEY,
+          'x-rapidapi-key': environment?.rapidApiKey,
           'x-rapidapi-host': WEATHER_API_HOST,
         },
     })
     return next(clone);
   }
-  if (req.url.includes('newsapi')) {
+  if (!environment.production && req.url.includes('newsapi')) {
     const clone = req.clone({
       setHeaders: {
-          'X-Api-Key': NEWS_API_KEY,
+          'X-Api-Key': environment.newsApiKey,
         },
     })
     return next(clone);
   }
-  if (req.url.includes('unsplash')) {
+  if (!!environment.production && req.url.includes('unsplash')) {
+    console.log('using proxy')
     const clone = req.clone({
       setHeaders: {
-          'Authorization': `Client-ID ${UNSPLASH_ACCESS_KEY}`,
+          'Authorization': `Client-ID ${environment.unsplashAccessKey}`,
           'Accept-Version': '1',
         },
     })

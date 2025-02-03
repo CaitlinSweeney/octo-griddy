@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { lucideMoon, lucideSunrise, lucideMoonStar, lucideSunset } from '@ng-icons/lucide';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 
-import { WeatherService } from '../../../services/weather.service';
+import { ApiService } from '../../../services/api.service';
 
 const defaultState = {
   location: {
@@ -38,12 +38,12 @@ const defaultState = {
   styleUrl: './astronomy.component.scss'
 })
 export class AstronomyComponent implements OnInit {
-  weatherService = inject(WeatherService);
+  apiService = inject(ApiService);
   data = signal<AstronomyResponse>(defaultState);
 
   ngOnInit() {
     // @ts-ignore
-    this.weatherService.getAstronomyRequest().subscribe(res => this.data.set(res as AstronomyResponse));
+    this.apiService.getAstronomyRequest().subscribe(res => this.data.set(res as AstronomyResponse));
   }
 }
 

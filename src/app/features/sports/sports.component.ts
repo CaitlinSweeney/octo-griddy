@@ -1,6 +1,6 @@
 import { Component, inject,  OnInit, signal } from '@angular/core';
 
-import { NewsService } from '../../services/news.service';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-sports',
@@ -10,11 +10,11 @@ import { NewsService } from '../../services/news.service';
 })
 
 export class SportsComponent implements OnInit {
-  newsService = inject(NewsService);
+  apiService = inject(ApiService);
   data = signal<Response | null>(null)
 
   ngOnInit(): void {
-      this.newsService.getCategoryRequest('us', 'sports', '2').subscribe(res => this.data.set(res as Response))
+      this.apiService.getCategoryRequest('us', 'sports', '2').subscribe(res => this.data.set(res as Response))
   }
 }
 
