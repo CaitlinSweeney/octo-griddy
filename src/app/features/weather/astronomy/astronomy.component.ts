@@ -45,7 +45,6 @@ export class AstronomyComponent {
   constructor() {
     effect(() => {
       if (!environment.production) {
-        console.log('how is this not working')
         if (!this.data()?.location?.name) {
           this.apiService.getAstronomyRequest().subscribe(res => this.data.set(res as AstronomyResponse));
         }

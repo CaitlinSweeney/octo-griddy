@@ -1,0 +1,8 @@
+<div class="grid items-center">
+  <div class="flex justify-between">
+    <div class="flex gap-2">
+      <input class="checkbox-primary" type="checkbox" [checked]="!!data()?.completed" />
+      <p>Title: </p>
+    </div>
+    <p>{{ data()?.title }}</p>
+</div>
