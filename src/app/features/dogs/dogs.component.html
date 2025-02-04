@@ -1,12 +1,12 @@
 <div class="grid grid-cols-2 grid-rows-3 gap-4 items-center">
-  <p>{{ data().name }}</p>
-  <img [src]="data().image_link" class="w-42 h-42 row-span-2 rounded-full border-4 border-white shadow-md" />
+  <p>{{ data()?.name }}</p>
+  <img [src]="data()?.image_link" class="w-42 h-42 row-span-2 rounded-full border-4 border-white shadow-md" />
   <div class="flex justify-between col-start-1">
     <p>Good with children: </p>
-    <p>{{ data().good_with_children }}</p>
+    <p>{{ data()?.good_with_children }}</p>
   </div>
   <div class="flex justify-between col-start-1">
     <p>Good with other dogs: </p>
-    <p>{{ data().good_with_other_dogs }}</p>
+    <p>{{ data()?.good_with_other_dogs }}</p>
   </div>
 </div>

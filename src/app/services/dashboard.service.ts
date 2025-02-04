@@ -6,6 +6,7 @@ import { ForecastComponent } from '../features/weather/forecast/forecast.compone
 import { NewsComponent } from '../features/news/news.component';
 import { QuoteComponent } from '../features/quote/quote.component';
 import { SportsComponent } from '../features/sports/sports.component';
+import { TodosComponent } from '../features/todos/todos.component';
 import { DogsComponent } from '../features/dogs/dogs.component';
 
 export const defaultWidgets = [
@@ -54,6 +55,14 @@ export const defaultWidgets = [
     title: 'Dogs Rule',
     id: 6,
     index: 5,
+    columns: 2,
+    rows: 2,
+  },
+  {
+    component: TodosComponent,
+    title: 'To Dos',
+    id: 7,
+    index: 6,
     columns: 2,
     rows: 2,
   },

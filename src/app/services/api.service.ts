@@ -1,15 +1,18 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '@/environments/environment';
 
 @Injectable()
 export class ApiService {
   http = inject(HttpClient);
 
   getTopHeadlinesRequest = (country?: string, size?: string) => {
-    return this.http.get(`https://newsapi.org/v2/top-headlines?country=${country || 'us'}&pageSize=${size || '5'}`)
+    const _url = environment.production ? 'https://jsonplaceholder.typicode.com/posts/1' : `https://newsapi.org/v2/top-headlines?country=${country || 'us'}&pageSize=${size || '5'}`
+    return this.http.get(_url)
   };
   getCategoryRequest = (country?: string, category?: string, size?: string) => {
-    return this.http.get(`https://newsapi.org/v2/top-headlines?country=${country || 'us'}&category=${category || 'general'}&pageSize=${size || '5'}`)
+    const _url = environment.production ? 'https://jsonplaceholder.typicode.com/posts/1' : `https://newsapi.org/v2/top-headlines?country=${country || 'us'}&category=${category || 'general'}&pageSize=${size || '5'}`
+    return this.http.get(_url)
   };
   getAstronomyRequest = () => {
    return this.http.get(this.astronomyApi)
@@ -22,6 +25,9 @@ export class ApiService {
   };
   getDogFactsRequest = () => {
      return this.http.get('/api-ninjas/dogs')
+  };
+  getTodos = () => {
+     return this.http.get('https://jsonplaceholder.typicode.com/todos/2')
   };
 
   private weatherUrl = 'https://weatherapi-com.p.rapidapi.com';
