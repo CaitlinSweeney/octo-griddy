@@ -1,6 +1,8 @@
-import { Component, inject,  OnInit, signal } from '@angular/core';
+import { Component, inject,  OnInit, effect, signal } from '@angular/core';
 
-import { NewsService } from '../../services/news.service';
+import { ApiService } from '@/app/services/api.service';
+import { environment } from '@/environments/environment';
+import { sportsResponse } from './mockSports';
 
 @Component({
   selector: 'app-sports',
@@ -9,12 +11,20 @@ import { NewsService } from '../../services/news.service';
   styleUrl: './sports.component.scss'
 })
 
-export class SportsComponent implements OnInit {
-  newsService = inject(NewsService);
+export class SportsComponent {
+  apiService = inject(ApiService);
   data = signal<Response | null>(null)
 
-  ngOnInit(): void {
-      this.newsService.getCategoryRequest('us', 'sports', '2').subscribe(res => this.data.set(res as Response))
+  constructor() {
+    effect(() => {
+      if (!environment.production) {
+        if (!this.data()) {
+          this.apiService.getCategoryRequest('us', 'sports', '2').subscribe(res => this.data.set(res as Response))
+        }
+      } else {
+        this.data.set(sportsResponse as Response)
+      }
+    })
   }
 }
 

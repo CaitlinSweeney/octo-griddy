@@ -1,9 +1,10 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, effect, signal } from '@angular/core';
 import { NgIconComponent } from '@ng-icons/core';
 import { lucideWind, lucideCloudRain } from '@ng-icons/lucide';
 import { provideIcons } from '@ng-icons/core';
 
-import { WeatherService } from '../../../services/weather.service';
+import { environment } from '@/environments/environment';
+import { ApiService } from '@/app/services/api.service';
 
 @Component({
   selector: 'app-app-forecast',
@@ -12,19 +13,23 @@ import { WeatherService } from '../../../services/weather.service';
   templateUrl: './forecast.component.html',
   styleUrl: './forecast.component.scss'
 })
-export class ForecastComponent implements OnInit {
-  weatherService = inject(WeatherService);
+export class ForecastComponent {
+  apiService = inject(ApiService);
   data = signal<ForecastResponse | null>(null)
   currentIcon = '';
 
-  ngOnInit() {
-    this.weatherService.getForecastRequest().subscribe(res => {
-      // @ts-ignore
-      this.data.set(res as ForecastResponse)
-      // @ts-ignore
-      this.currentIcon = (res as ForecastResponse)?.current?.condition?.icon;
-    });
-    }
+  constructor() {
+    effect(() => {
+      if (!environment.production) {
+        if (!this.data()) {
+          this.apiService.getForecastRequest().subscribe(res => {
+            this.data.set(res as ForecastResponse)
+            this.currentIcon = (res as ForecastResponse)?.current?.condition?.icon;
+          });
+        }
+      }
+    })
+  }
 }
 
 export interface ForecastResponse {

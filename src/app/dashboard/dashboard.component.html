@@ -3,16 +3,16 @@
     <!-- <h1 class="prose lg:prose-xl">Current Widgets</h1> -->
     <div tabindex="0" class="collapse max-w-60">
     <input type="checkbox" />
-      <div class="btn btn-primary collapse-title p-0">
+      <div class="btn btn-primary collapse-title p-0 rounded-b-none">
         Add Widget
         <ng-icon name="lucidePlus" />
       </div>
       <div class="collapse-content p-0">
-        <ul class="grid align-left bg-base-200 gap-2 rounded-box">
+        <ul class="grid align-left bg-base-200 gap-2 rounded-b-small rounded-t-none">
           @for (widget of store.widgetsToAdd(); track widget.id) {
             <button class="btn" (click)="store.addWidget(widget)">{{ widget.title}}</button>
           } @empty {
-            <p class="px-10 py-6">No widgets to add</p>
+            <p class="italic center px-10 py-6 rounded-t-none rounded-b-small">No widgets to add</p>
           }
         </ul>
       </div>

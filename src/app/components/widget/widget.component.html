@@ -3,7 +3,7 @@
     <h3 class="text-white">{{ widget.title }}</h3>
     <button (click)="showOptions.set(true)"><ng-icon name="lucideSettings" /></button>
   </div>
-  <div class="p-8">
+  <div class="p-8 border-0">
     <ng-container [ngComponentOutlet]="widget.component" />
   </div>
 

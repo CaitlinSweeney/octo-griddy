@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { lucideCirclePlus } from '@ng-icons/lucide';
-import { DashboardService } from '../../services/dashboard.service';
+import { DashboardService } from '@/app/services/dashboard.service';
 
 @Component({
   selector: 'app-widgets-panel',
@@ -13,7 +13,7 @@ import { DashboardService } from '../../services/dashboard.service';
       <ng-icon name="lucideCirclePlus" />
     </div>
     @for (w of store.widgetsToAdd(); track w.id) {
-      
+
     }
   `,
   styleUrl: './widgets-panel.component.scss'

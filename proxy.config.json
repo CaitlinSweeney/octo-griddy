@@ -7,5 +7,14 @@
     "pathRewrite": {
       "^/unsplash": ""
     }
+  },
+ "/api-ninjas": {
+    "target": "https://api.api-ninjas.com/v1",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api-ninjas": ""
+    }
   }
 }

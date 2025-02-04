@@ -1,9 +1,10 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { lucideMoon, lucideSunrise, lucideMoonStar, lucideSunset } from '@ng-icons/lucide';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
-
-import { WeatherService } from '../../../services/weather.service';
+import { environment } from '@/environments/environment';
+import { ApiService } from '@/app/services/api.service';
+import { astronomyResponse } from './mockAstronomy';
 
 const defaultState = {
   location: {
@@ -37,13 +38,21 @@ const defaultState = {
   templateUrl: './astronomy.component.html',
   styleUrl: './astronomy.component.scss'
 })
-export class AstronomyComponent implements OnInit {
-  weatherService = inject(WeatherService);
+export class AstronomyComponent {
+  apiService = inject(ApiService);
   data = signal<AstronomyResponse>(defaultState);
 
-  ngOnInit() {
-    // @ts-ignore
-    this.weatherService.getAstronomyRequest().subscribe(res => this.data.set(res as AstronomyResponse));
+  constructor() {
+    effect(() => {
+      if (!environment.production) {
+        console.log('how is this not working')
+        if (!this.data()?.location?.name) {
+          this.apiService.getAstronomyRequest().subscribe(res => this.data.set(res as AstronomyResponse));
+        }
+      } else {
+        this.data.set(astronomyResponse)
+      }
+    })
   }
 }
 

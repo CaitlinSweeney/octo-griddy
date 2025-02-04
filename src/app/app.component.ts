@@ -1,11 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
+// import { environment } from '../environments/environment';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavBarComponent } from './components/navigation/nav-bar/nav-bar.component';
 import { UnsplashResponse } from './dashboard/types';
-import { unsplashRes } from './utils/mockUnsplash';
-import { HttpClient } from '@angular/common/http';
+import { unsplashRes } from './tests/mockUnsplash';
 
 @Component({
   selector: 'app-root',
@@ -16,14 +17,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
   http = inject(HttpClient)
-  backgroundImage = signal<UnsplashResponse | null>(null)
+  // @ts-ignore
+  backgroundImage = signal<UnsplashResponse | null>(unsplashRes)
 
-  ngOnInit(): void {
-    this.backgroundImage.set(unsplashRes);
-    // this.http.get('/unsplash/photos/random').subscribe((res) => this.backgroundImage.set((res as UnsplashResponse)))
-  }
+  // private unsplashURL = environment.production
+  //   ? '/api/unsplash'  // Use Vercel Proxy in prod
+  //   : 'https://api.unsplash.com'; // api in dev
   get backgroundImageHref() {
-    console.log({ full: this.backgroundImage()?.urls?.full })
     return this.backgroundImage()?.urls?.full
    }
 }

@@ -1,7 +1,7 @@
 import { Component, inject, input, model, signal } from '@angular/core';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { lucideX, lucideTrash } from '@ng-icons/lucide';
-import { DashboardService } from '../../../services/dashboard.service';
+import { DashboardService } from '@/app/services/dashboard.service';
 import { Widget } from '../widget.component';
 
 
