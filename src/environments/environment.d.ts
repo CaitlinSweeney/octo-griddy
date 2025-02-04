@@ -4,6 +4,7 @@ export interface Environment {
   unsplashAccessKey: string;
   rapidApiKey: string;
   newsApiKey: string;
+  ninjasApiKey: string;
 }
 
 export const environment: Environment;

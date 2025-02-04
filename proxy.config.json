@@ -1,13 +1,4 @@
 {
- "/dog-facts": {
-    "target": "https://dog-facts-api.herokuapp.com/api/v1/resources/dogs",
-    "secure": true,
-    "changeOrigin": true,
-    "logLevel": "debug",
-    "pathRewrite": {
-      "^/dog-facts": ""
-    }
-  },
  "/unsplash": {
     "target": "https://api.unsplash.com",
     "secure": true,
@@ -15,6 +6,15 @@
     "logLevel": "debug",
     "pathRewrite": {
       "^/unsplash": ""
+    }
+  },
+ "/api-ninjas": {
+    "target": "https://api.api-ninjas.com/v1",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api-ninjas": ""
     }
   }
 }

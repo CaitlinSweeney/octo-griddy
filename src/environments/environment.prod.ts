@@ -6,4 +6,5 @@ export const environment: Environment = {
   unsplashAccessKey: '',
   rapidApiKey: '',
   newsApiKey: '',
+  ninjasApiKey: '',
 };

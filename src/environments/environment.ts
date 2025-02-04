@@ -6,4 +6,5 @@ import { Environment } from './environment.d';
     unsplashAccessKey: '',
     rapidApiKey: '',
     newsApiKey: '',
+    ninjasApiKey: '',
   };

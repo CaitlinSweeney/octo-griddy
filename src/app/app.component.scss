@@ -7,7 +7,7 @@
   height: calc(100vh - 64px);
 }
 .dash-container {
-  @apply relative overflow-auto w-screen h-screen bg-cover bg-center bg-no-repeat;
+  @apply relative overflow-auto h-screen bg-cover bg-center bg-no-repeat;
   height: 100%;
   z-index: 1;
 }

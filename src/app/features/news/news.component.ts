@@ -1,6 +1,7 @@
-import { Component, inject,  OnInit, signal } from '@angular/core';
-
-import { ApiService } from '../../services/api.service';
+import { Component, inject,  OnInit, effect, signal } from '@angular/core';
+import { environment } from '@/environments/environment';
+import { ApiService } from '@/app/services/api.service';
+import { newsResponse } from './mockNews';
 
 @Component({
   selector: 'app-news',
@@ -8,12 +9,20 @@ import { ApiService } from '../../services/api.service';
   templateUrl: './news.component.html',
   styleUrl: './news.component.scss'
 })
-export class NewsComponent implements OnInit {
+export class NewsComponent {
   apiService = inject(ApiService);
   data = signal<Response | null>(null)
 
-  ngOnInit(): void {
-      this.apiService.getTopHeadlinesRequest().subscribe(res => this.data.set(res as Response))
+  constructor() {
+    effect(() => {
+      if (!environment.production) {
+        if (!this.data()) {
+          this.apiService.getTopHeadlinesRequest().subscribe(res => this.data.set(res as Response))
+        }
+      } else {
+        this.data.set(newsResponse as Response)
+      }
+    })
   }
 }
 

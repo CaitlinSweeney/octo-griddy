@@ -9,6 +9,7 @@ const envConfig = `
     unsplashAccessKey: '${process.env['UNSPLASH_ACCESS_KEY'] || ''}',
     rapidApiKey: '${process.env['RAPID_API_KEY'] || ''}',
     newsApiKey: '${process.env['NEWS_API_KEY'] || ''}',
+    ninjasApiKey: '${process.env['NINJAS_API_KEY'] || ''}',
   };
 `;
 fs.writeFileSync('./src/environments/environment.development.ts', envConfig);
